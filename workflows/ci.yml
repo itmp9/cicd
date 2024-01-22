@@ -1,0 +1,22 @@
+name: Simple CI
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Check HTML
+      run: |
+        if grep -q '<html' index.html; then 
+          echo "HTML tag found";
+        else 
+          echo "HTML tag not found";
+          exit 1;
+        fi
